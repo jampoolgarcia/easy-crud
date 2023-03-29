@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Employee } from './models/employee';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'easy-crud';
+  public employeeList: Employee[] = [
+    { id: 1, name: 'Ryan', country: 'USA'},
+    { id: 1, name: 'Angelica', country: 'USA'},
+    { id: 1, name: 'Joe', country: 'USA'}
+  ]
+
+  
 }
