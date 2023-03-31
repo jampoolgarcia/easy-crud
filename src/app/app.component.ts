@@ -17,20 +17,18 @@ export class AppComponent {
 
   public employeeList: Employee[] = [
     { id: 1, name: 'Ryan', country: 'USA'},
-    { id: 1, name: 'Angelica', country: 'USA'},
-    { id: 1, name: 'Joe', country: 'USA'}
+    { id: 2, name: 'Angelica', country: 'USA'},
+    { id: 3, name: 'Joe', country: 'USA'}
   ];
 
-  onSubmit(): void {
+  public selectedEmployee = new Employee();
 
-  }
-
-  add(e: Employee): void {
-    
-  }
-
-  idit(e: Employee): void{
-  
+  addOrEdit(): void {
+    this.selectedEmployee.id = this.employeeList.length+1;
+    this.selectedEmployee.name = this.form.get('name')?.value || '';
+    this.selectedEmployee.country = this.form.get('country')?.value || '';
+    this.employeeList.push(this.selectedEmployee);
+    this.form.reset();
   }
 
   delete(e: Employee): void {
