@@ -11,6 +11,7 @@ export class AppComponent {
 
   public index = -1;
   public form = new FormGroup({
+    id: new FormControl(''),
     name: new FormControl(''),
     country: new FormControl(''),
   });
@@ -21,17 +22,30 @@ export class AppComponent {
     { id: 3, name: 'Joe', country: 'USA'}
   ];
 
-  public selectedEmployee = new Employee();
+  public selectEmployee = new Employee();
 
   addOrEdit(): void {
-    this.selectedEmployee.id = this.employeeList.length+1;
-    this.selectedEmployee.name = this.form.get('name')?.value || '';
-    this.selectedEmployee.country = this.form.get('country')?.value || '';
-    this.employeeList.push(this.selectedEmployee);
+    this.form.get('id')?.setValue(`${this.employeeList.length+1}`);
+
+    this.selectEmployee = {
+      id: Number(this.form.get('id')?.value) || -1,
+      name: this.form.get('name')?.value || '',
+      country: this.form.get('country')?.value || ''
+    }
+
+    this.employeeList.push(this.selectEmployee);
+
     this.form.reset();
   }
 
-  delete(e: Employee): void {
+  seledForEdit(employee: Employee){
+    this.selectEmployee = employee;
+    this.form.get('id')?.setValue(`${employee.id}`);
+    this.form.get('name')?.setValue(employee.name);
+    this.form.get('country')?.setValue(employee.country);
+  }
+
+  delete(employee: Employee): void {
 
   }
 

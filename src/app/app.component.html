@@ -11,6 +11,8 @@
         <li
           class="list-group-item list-group-item-action"
           *ngFor="let employee of employeeList"
+          (click)="seledForEdit(employee)"
+          [class.active]="employee === selectEmployee"
         >
         <span class="badge text-bg-primary">{{ employee.id }}</span>
         {{ employee.name }} - {{ employee.country }}
