@@ -46,6 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   seledForEdit(employee: Employee){
+    this.selectEmployee = employee;
     this.form.patchValue(employee);
   }
 
