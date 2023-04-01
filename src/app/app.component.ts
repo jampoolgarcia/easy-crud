@@ -42,7 +42,9 @@ export class AppComponent implements OnInit, OnDestroy {
      this.edit();
     }
 
-    this.form.reset();
+    this.form.reset({
+      id: 0
+    });
   }
 
   seledForEdit(employee: Employee){
@@ -52,16 +54,22 @@ export class AppComponent implements OnInit, OnDestroy {
 
   save(){
     this.form.get('id')?.setValue(this.employeeList.length+1);
-    this.employeeList.push(this.selectEmployee);
+    this.employeeList.push({...this.selectEmployee});
   }
 
   edit(){
     let index = Number(this.form.get('id')?.value) -1;
-    this.employeeList[index] = Object.assign({}, this.selectEmployee);
+    this.employeeList[index] = {...this.selectEmployee};
   }
 
   delete(){
-    
+    if(confirm('Are you sure you want to delete it?')){
+      let em = {...this.selectEmployee};
+      this.form.reset({
+        id: 0
+      });
+      this.employeeList = this.employeeList.filter(elem => JSON.stringify(elem) !== JSON.stringify(em));
+    }
   }
 
 }
