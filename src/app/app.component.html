@@ -30,8 +30,9 @@
             <label for="country" class="form-label">Country</label>
             <input type="text"  formControlName="country" placeholder="Insert a country" class="form-control">
           </div>
-          <button type="submit" class="btn btn-primary">Sumit</button>
-          </form>
+          <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Sumit</button>
+          <button (click)="delete()" *ngIf="selectEmployee.id != 0" class="btn btn-danger mx-2">Delete</button>  
+        </form>
         </div>
       </div>
     </div>

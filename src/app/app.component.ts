@@ -60,4 +60,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.employeeList[index] = Object.assign({}, this.selectEmployee);
   }
 
+  delete(){
+    
+  }
+
 }
